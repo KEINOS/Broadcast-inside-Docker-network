@@ -27,7 +27,7 @@ $ docker-compose up
 
 <details><summary>What you will see</summary><div><br>
 
-After running the `docker-compose up`, as soon as the `sender` containers are `up` they will start broadcasting a message. Also the `receiver` containers will listen to the broadcasting message as soon as they are `up` and echos the received message.
+After running the `docker-compose up`, as soon as the `sender` containers are `up` they will start broadcasting a message. Also the `receiver` containers will listen to the broadcasting message as soon as they are `up` and echoes the received message.
 
 ```shellsession
 $ docker-compose up
@@ -75,7 +75,7 @@ receiver-php8    | Msg received: Count:1        Broadcasting meow meow from send
 
 There are 2 types of Docker containers; `sender` and `receiver`.
 
-The `sender` container sends a message and the `receiver` container receives the message and echos it. Simple as that.
+The `sender` container sends a message and the `receiver` container receives the message and echoes it. Simple as that.
 
 To send and receive messages, both types of containers follows the same rules. Such as: Same TCP/IP protocol, data type, broadcast address and port.
 
