@@ -1,6 +1,8 @@
 # Broadcasting And Receiving A UDP Message In The Docker Network
 
-Sample of broadcasting UDP messages inside the Docker network and receiving them with: ash shell, PHP7, PHP8-alpha and Python3.
+Sample of broadcasting UDP messages inside the Docker network and receiving them with:
+
+- Ash shell, PHP7, PHP8-alpha and Python3.
 
 ## What You Need
 
