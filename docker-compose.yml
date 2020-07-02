@@ -1,0 +1,126 @@
+version: '3.4'
+
+services:
+  # ===========================================================================
+  #  UDP Broadcast Senders
+  # ===========================================================================
+  # Ash Shell Sender
+  sender-ash:
+    container_name: sender-ash
+    build: ./sender/ash/.
+    depends_on:
+      - receiver-ash
+      - receiver-php7
+      - receiver-php8
+      - receiver-py3
+    environment:
+      MY_HOST: sender-ash
+    env_file: ENV_FILE
+    volumes:
+      - ./sender/ash/sender.sh:/app/sender.sh
+    entrypoint: '/bin/sh'
+    command: '/app/sender.sh'
+
+  # PHP7 Sender
+  sender-php7:
+    container_name: sender-php7
+    build: ./sender/php7/.
+    environment:
+      MY_HOST: sender-php7
+    env_file: ENV_FILE
+    depends_on:
+      - receiver-ash
+      - receiver-php7
+      - receiver-php8
+      - receiver-py3
+    volumes:
+      - ./sender/php7/sender.php:/app/sender.php
+    entrypoint: '/usr/local/bin/php'
+    command: /app/sender.php
+
+  # PHP8 Sender
+  sender-php8:
+    container_name: sender-php8
+    build: ./sender/php8/.
+    environment:
+      MY_HOST: sender-php8
+    env_file: ENV_FILE
+    depends_on:
+      - receiver-ash
+      - receiver-php7
+      - receiver-php8
+      - receiver-py3
+    volumes:
+      - ./sender/php8/sender.php:/app/sender.php
+    entrypoint: '/usr/local/bin/php'
+    command: /app/sender.php
+
+  # Python3 sender
+  sender-py3:
+    container_name: sender-py3
+    build: ./sender/python3/.
+    depends_on:
+      - receiver-ash
+      - receiver-php7
+      - receiver-php8
+      - receiver-py3
+    environment:
+      MY_HOST: sender-py3
+    env_file: ENV_FILE
+    volumes:
+      - ./sender/python3/sender.sh:/app/sender.sh
+      - ./sender/python3/meow.py:/app/meow.py
+    entrypoint: '/bin/sh'
+    command: '/app/sender.sh'
+
+  # ===========================================================================
+  #  UDP Broadcast Receivers (Listeners)
+  # ===========================================================================
+  # Ash Shell Receiver (Listener)
+  receiver-ash:
+    container_name: receiver-ash
+    build: ./receiver/ash/.
+    environment:
+      MY_HOST: receiver-ash
+    env_file: ENV_FILE
+    volumes:
+      - ./receiver/ash/receiver.sh:/app/receiver.sh
+    entrypoint: '/bin/sh'
+    command: '/app/receiver.sh'
+
+  # PHP7 Receiver (Listener)
+  receiver-php7:
+    container_name: receiver-php7
+    build: ./receiver/php7/.
+    environment:
+      MY_HOST: receiver-php7
+    env_file: ENV_FILE
+    volumes:
+      - ./receiver/php7/receiver.php:/app/receiver.php
+    entrypoint: '/usr/local/bin/php'
+    command: /app/receiver.php
+
+  # PHP8 Receiver (Listener)
+  receiver-php8:
+    container_name: receiver-php8
+    build: ./receiver/php8/.
+    environment:
+      MY_HOST: receiver-php8
+    env_file: ENV_FILE
+    volumes:
+      - ./receiver/php8/receiver.php:/app/receiver.php
+    entrypoint: '/usr/local/bin/php'
+    command: /app/receiver.php
+
+  # Python3 Receiver (Listener)
+  receiver-py3:
+    container_name: receiver-py3
+    build: ./receiver/python3/.
+    environment:
+      MY_HOST: receiver-py3
+    env_file: ENV_FILE
+    volumes:
+      - ./receiver/python3/parrotry.py:/app/parrotry.py
+      - ./receiver/python3/receiver.sh:/app/receiver.sh
+    entrypoint: '/bin/sh'
+    command: '/app/receiver.sh'

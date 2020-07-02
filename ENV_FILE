@@ -1,0 +1,9 @@
+# =============================================================================
+#  Env variables for the containers as a global configuration.
+# =============================================================================
+
+# Port number to send/receive the broadcasting messages.
+PORT_UDP_BROADCAST=6666
+
+# Interval time in seconds to "sleep()" between the messages to send.
+TIME_INTERVAL_MSG=10
