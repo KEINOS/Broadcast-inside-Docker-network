@@ -85,7 +85,7 @@ To send and receive messages, both types of containers follows the same rules. S
 
 The `sender` container broadcasts a message to all the containers in the same Docker network.
 
-- **Msg to echo     :** "`Broadcasting meow meow from [sender name]  [counter]`"
+- **Msg to echo     :** "`Count:[counter]  Broadcasting meow meow from [sender name]`"
   - **`sender name`   :** Name of the sender container specified by `environment` directive in "docker-compose.yml" as `MY_HOST`.
 - **Msg frequency   :** Every 3 seconds which is specified in "[ENV_FILE](./ENV_FILE)" file and given as a env variables to the container.
 - Sample Alpine Linux containers for implementation:
@@ -99,7 +99,7 @@ The `sender` container broadcasts a message to all the containers in the same Do
 
 The `receiver` container listens to the broadcast messages and echoes the received message.
 
-- **Message to echo   :** "`[receiver name]  Msg received: [received msg]`"
+- **Message to echo   :** "`Msg received: [received msg] : [receiver name]`"
   - **`receiver name`   :** Name of the sender container specified by `environment` directive in "docker-compose.yml" as `MY_HOST`.
 - Sample Alpine Linux containers for implementation:
   - [/receiver/bash/](./receiver/bash/)
