@@ -13,7 +13,7 @@ Sample of broadcasting UDP messages inside the Docker network and receiving them
 
 ## How To Run
 
-Build the containers and run with `docker-compose`.
+**Build the containers and run** with `docker-compose`.
 
 ```shellsession
 $ # Build/create containers
@@ -21,7 +21,7 @@ $ docker-compose build
 ...
 
 $ # Starts the containers
-docker-compose up
+$ docker-compose up
 ...
 ```
 
